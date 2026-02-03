@@ -1,0 +1,63 @@
+{
+  "name": "@logto/experience-sample-shared",
+  "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js",
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    },
+    "./api": {
+      "default": "./src/experience-api.js",
+      "types": "./src/experience-api.d.ts",
+      "import": "./src/experience-api.js"
+    },
+    "./utils": {
+      "default": "./src/utils.js",
+      "types": "./src/utils.d.ts",
+      "import": "./src/utils.js"
+    },
+    "./assets/*": "./assets/*",
+    "./scss/*": "./scss/*"
+  },
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib",
+    "scss"
+  ],
+  "scripts": {
+    "precommit": "lint-staged",
+    "build": "rm -rf lib/ && tsc",
+    "generate-api": "node scripts/generate-api.js",
+    "lint": "eslint --ext .ts src",
+    "stylelint": "stylelint \"scss/**/*.scss\"",
+    "prepack": "pnpm generate-api && pnpm build"
+  },
+  "devDependencies": {
+    "@logto/schemas": "^1.19.0",
+    "@silverhand/eslint-config": "6.0.1",
+    "@silverhand/ts-config": "6.0.0",
+    "eslint": "^8.56.0",
+    "stylelint": "^16.0.0",
+    "swagger-typescript-api": "^13.0.21",
+    "typescript": "^5.5.3"
+  },
+  "engines": {
+    "node": "^22.0.0"
+  },
+  "eslintConfig": {
+    "extends": "@silverhand",
+    "ignorePatterns": [
+      "src/experience-api.ts"
+    ],
+    "rules": {
+      "@silverhand/fp/no-mutation": "off"
+    }
+  },
+  "stylelint": {
+    "extends": "@silverhand/eslint-config-react/.stylelintrc"
+  },
+  "prettier": "@silverhand/eslint-config/.prettierrc"
+}
